@@ -7,7 +7,7 @@ const initialData = {
       teams: [
         {
           name: "Spirit",
-          odds: "2.262",
+          odds: "2.26",
           logo: "logos/spirit.png"
         },
         {
@@ -29,7 +29,7 @@ const initialData = {
         },
         {
           name: "Natus Vincere",
-          odds: "3.525",
+          odds: "3.52",
           logo: "logos/navi.png"
         }
       ]
@@ -200,15 +200,9 @@ function createOddsPill(oddsValue, roundType) {
   odds.className = "odds";
 
   if (roundType === "quarter" && oddsValue) {
-    const book = document.createElement("span");
-    book.className = "odds-book";
-    book.textContent = "1X";
-
     const value = document.createElement("span");
     value.className = "odds-value";
     value.textContent = oddsValue;
-
-    odds.appendChild(book);
     odds.appendChild(value);
   } else {
     odds.classList.add("no-odds");
