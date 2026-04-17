@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS Pick'em Bracket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PICK'EM</p>
+        <h1>Playoff Bracket Predictor</h1>
+        <p class="subtitle">Click teams to advance them through the bracket and choose your champion.</p>
+      </div>
+
+      <button id="resetBtn" class="reset-btn">Reset</button>
+    </header>
+
+    <main class="bracket-wrapper">
+      <section class="column">
+        <div class="column-title">Quarter-finals</div>
+        <div id="quarterFinals" class="match-list"></div>
+      </section>
+
+      <section class="column">
+        <div class="column-title">Semi-finals</div>
+        <div id="semiFinals" class="match-list"></div>
+      </section>
+
+      <section class="column final-column">
+        <div class="column-title">Grand final</div>
+        <div id="grandFinal" class="match-list"></div>
+
+        <div class="champion-box">
+          <div class="champion-label">Champion</div>
+          <div id="championName" class="champion-name">TBD</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
