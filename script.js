@@ -1,3 +1,5 @@
+const BOOKMAKER_LOGO = "logos/1xbet.png";
+
 const initialData = {
   quarterFinals: [
     {
@@ -195,6 +197,29 @@ function handleGrandFinalPick(teamIndex) {
   renderAll();
 }
 
+function createOddsPill(oddsValue, roundType) {
+  const odds = document.createElement("div");
+  odds.className = "odds";
+
+  if (roundType === "quarter" && oddsValue) {
+    const logo = document.createElement("img");
+    logo.className = "odds-logo";
+    logo.src = BOOKMAKER_LOGO;
+    logo.alt = "1xBet";
+
+    const value = document.createElement("span");
+    value.textContent = oddsValue;
+
+    odds.appendChild(logo);
+    odds.appendChild(value);
+  } else {
+    odds.classList.add("no-odds");
+    odds.textContent = "-";
+  }
+
+  return odds;
+}
+
 function createTeamRow(team, index, match, roundType) {
   const row = document.createElement("div");
   row.className = "team-row";
@@ -235,19 +260,8 @@ function createTeamRow(team, index, match, roundType) {
   teamName.textContent = team.name;
 
   teamMain.appendChild(teamName);
-
-  const odds = document.createElement("div");
-  odds.className = "odds";
-
-  if (roundType === "quarter" && team.odds) {
-    odds.textContent = team.odds;
-  } else {
-    odds.classList.add("no-odds");
-    odds.textContent = "-";
-  }
-
   row.appendChild(teamMain);
-  row.appendChild(odds);
+  row.appendChild(createOddsPill(team.odds, roundType));
 
   return row;
 }
