@@ -1,5 +1,3 @@
-const BOOKMAKER_LOGO = "logos/1x.png";
-
 const initialData = {
   quarterFinals: [
     {
@@ -202,15 +200,15 @@ function createOddsPill(oddsValue, roundType) {
   odds.className = "odds";
 
   if (roundType === "quarter" && oddsValue) {
-    const logo = document.createElement("img");
-    logo.className = "odds-logo";
-    logo.src = BOOKMAKER_LOGO;
-    logo.alt = "1X";
+    const book = document.createElement("span");
+    book.className = "odds-book";
+    book.textContent = "1X";
 
     const value = document.createElement("span");
+    value.className = "odds-value";
     value.textContent = oddsValue;
 
-    odds.appendChild(logo);
+    odds.appendChild(book);
     odds.appendChild(value);
   } else {
     odds.classList.add("no-odds");
