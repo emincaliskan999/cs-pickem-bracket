@@ -215,24 +215,25 @@ body {
 }
 
 .odds {
-  min-width: 88px;
-  padding: 7px 10px;
-  border-radius: 9px;
+  min-width: 108px;
+  padding: 8px 12px;
+  border-radius: 12px;
   background: #e6ebf2;
-  color: #354456;
+  color: #183b6b;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  font-size: 14px;
-  font-weight: 700;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 800;
 }
 
 .odds-logo {
-  width: 16px;
-  height: 16px;
+  width: 34px;
+  height: 18px;
   object-fit: contain;
   flex-shrink: 0;
+  display: block;
 }
 
 .no-odds {
@@ -309,15 +310,15 @@ body {
   }
 
   .odds {
-    min-width: 78px;
-    padding: 7px 8px;
-    font-size: 13px;
-    gap: 6px;
+    min-width: 96px;
+    padding: 7px 10px;
+    font-size: 14px;
+    gap: 8px;
   }
 
   .odds-logo {
-    width: 14px;
-    height: 14px;
+    width: 28px;
+    height: 16px;
   }
 
   .champion-name {
