@@ -8,12 +8,12 @@ const initialData = {
         {
           name: "Spirit",
           odds: "2.262",
-          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fc/Team_Spirit_2024_allmode.png/64px-Team_Spirit_2024_allmode.png"
+          logo: "logos/spirit.png"
         },
         {
           name: "MOUZ",
           odds: "1.67",
-          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/MOUZ_2023_allmode.png/64px-MOUZ_2023_allmode.png"
+          logo: "logos/mouz.png"
         }
       ]
     },
@@ -25,12 +25,12 @@ const initialData = {
         {
           name: "Vitality",
           odds: "1.31",
-          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Team_Vitality_2024_allmode.png/64px-Team_Vitality_2024_allmode.png"
+          logo: "logos/vitality.png"
         },
         {
           name: "Natus Vincere",
           odds: "3.525",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Natus_Vincere_logo.svg/64px-Natus_Vincere_logo.svg.png"
+          logo: "logos/navi.png"
         }
       ]
     }
@@ -43,7 +43,7 @@ const initialData = {
       teams: [
         {
           name: "Falcons",
-          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/5/57/Team_Falcons_2024_allmode.png/64px-Team_Falcons_2024_allmode.png",
+          logo: "logos/falcons.png",
           locked: true
         },
         {
@@ -59,7 +59,7 @@ const initialData = {
       teams: [
         {
           name: "FURIA",
-          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/FURIA_Esports_logo.png/64px-FURIA_Esports_logo.png",
+          logo: "logos/furia.png",
           locked: true
         },
         {
