@@ -37,7 +37,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .eyebrow {
@@ -74,6 +74,39 @@ body {
 
 .reset-btn:hover {
   background: var(--panel-3);
+}
+
+.odds-note {
+  margin-bottom: 22px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.odds-note-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bookmaker-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.odds-note-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.odds-note-text {
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .bracket-wrapper {
@@ -248,6 +281,10 @@ body {
 
   .topbar h1 {
     font-size: 28px;
+  }
+
+  .odds-note-left {
+    align-items: flex-start;
   }
 
   .team-row {
