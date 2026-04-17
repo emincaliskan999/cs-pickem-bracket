@@ -2,42 +2,81 @@ const initialData = {
   quarterFinals: [
     {
       id: "qf1",
-      title: "Quarter-final 1",
       time: "18:00 Today",
       format: "BO3",
       teams: [
-        { name: "Spirit", odds: "2.262" },
-        { name: "MOUZ", odds: "1.67" }
+        {
+          name: "Spirit",
+          odds: "2.262",
+          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fc/Team_Spirit_2024_allmode.png/64px-Team_Spirit_2024_allmode.png"
+        },
+        {
+          name: "MOUZ",
+          odds: "1.67",
+          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/MOUZ_2023_allmode.png/64px-MOUZ_2023_allmode.png"
+        }
       ]
     },
     {
       id: "qf2",
-      title: "Quarter-final 2",
       time: "21:15 Today",
       format: "BO3",
       teams: [
-        { name: "Vitality", odds: "1.31" },
-        { name: "Natus Vincere", odds: "3.525" }
+        {
+          name: "Vitality",
+          odds: "1.31",
+          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Team_Vitality_2024_allmode.png/64px-Team_Vitality_2024_allmode.png"
+        },
+        {
+          name: "Natus Vincere",
+          odds: "3.525",
+          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Natus_Vincere_logo.svg/64px-Natus_Vincere_logo.svg.png"
+        }
       ]
-    },
+    }
+  ],
+  semiFinals: [
     {
-      id: "qf3",
-      title: "Quarter-final 3",
+      id: "sf1",
       time: "18:00 Saturday",
       format: "BO3",
       teams: [
-        { name: "Falcons", odds: "1.85" },
-        { name: "TBD", odds: null, isTBD: true }
+        {
+          name: "Falcons",
+          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/5/57/Team_Falcons_2024_allmode.png/64px-Team_Falcons_2024_allmode.png",
+          locked: true
+        },
+        {
+          name: "TBD",
+          isTBD: true
+        }
       ]
     },
     {
-      id: "qf4",
-      title: "Quarter-final 4",
+      id: "sf2",
       time: "21:15 Saturday",
       format: "BO3",
       teams: [
-        { name: "FURIA", odds: "2.10" },
-        { name: "TBD", odds: null, isTBD: true }
+        {
+          name: "FURIA",
+          logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/FURIA_Esports_logo.png/64px-FURIA_Esports_logo.png",
+          locked: true
+        },
+        {
+          name: "TBD",
+          isTBD: true
+        }
+      ]
+    }
+  ],
+  grandFinal: [
+    {
+      id: "gf1",
+      time: "20:00 Sunday",
+      format: "BO5",
+      teams: [
+        { name: "TBD", isTBD: true },
+        { name: "TBD", isTBD: true }
       ]
     }
   ]
@@ -49,48 +88,20 @@ function deepClone(data) {
   return JSON.parse(JSON.stringify(data));
 }
 
+function createTBDTeam() {
+  return {
+    name: "TBD",
+    isTBD: true
+  };
+}
+
 function resetState() {
   state = {
     quarterFinals: deepClone(initialData.quarterFinals),
-    semiFinals: [
-      {
-        id: "sf1",
-        title: "Semi-final 1",
-        time: "18:00 Sunday",
-        format: "BO3",
-        teams: [
-          { name: "TBD", odds: null, isTBD: true },
-          { name: "TBD", odds: null, isTBD: true }
-        ],
-        winner: null
-      },
-      {
-        id: "sf2",
-        title: "Semi-final 2",
-        time: "21:15 Sunday",
-        format: "BO3",
-        teams: [
-          { name: "TBD", odds: null, isTBD: true },
-          { name: "TBD", odds: null, isTBD: true }
-        ],
-        winner: null
-      }
-    ],
-    grandFinal: [
-      {
-        id: "gf1",
-        title: "Grand final",
-        time: "20:00 Sunday",
-        format: "BO5",
-        teams: [
-          { name: "TBD", odds: null, isTBD: true },
-          { name: "TBD", odds: null, isTBD: true }
-        ],
-        winner: null
-      }
-    ],
-    champion: "TBD",
-    winners: {}
+    semiFinals: deepClone(initialData.semiFinals),
+    grandFinal: deepClone(initialData.grandFinal),
+    winners: {},
+    champion: "TBD"
   };
 
   renderAll();
@@ -101,7 +112,7 @@ function getWinner(matchId) {
 }
 
 function setWinner(matchId, team) {
-  state.winners[matchId] = team;
+  state.winners[matchId] = { ...team };
 }
 
 function clearWinner(matchId) {
@@ -120,28 +131,25 @@ function handleQuarterFinalPick(matchId, teamIndex) {
   setWinner(matchId, selectedTeam);
 
   if (matchId === "qf1") {
-    state.semiFinals[0].teams[0] = { ...selectedTeam, odds: null };
-  }
-  if (matchId === "qf2") {
-    state.semiFinals[0].teams[1] = { ...selectedTeam, odds: null };
-  }
-  if (matchId === "qf3") {
-    state.semiFinals[1].teams[0] = { ...selectedTeam, odds: null };
-  }
-  if (matchId === "qf4") {
-    state.semiFinals[1].teams[1] = { ...selectedTeam, odds: null };
-  }
+    state.semiFinals[0].teams[1] = {
+      name: selectedTeam.name,
+      logo: selectedTeam.logo
+    };
 
-  if (matchId === "qf1" || matchId === "qf2") {
     clearWinner("sf1");
-    state.grandFinal[0].teams[0] = { name: "TBD", odds: null, isTBD: true };
+    state.grandFinal[0].teams[0] = createTBDTeam();
     clearWinner("gf1");
     state.champion = "TBD";
   }
 
-  if (matchId === "qf3" || matchId === "qf4") {
+  if (matchId === "qf2") {
+    state.semiFinals[1].teams[1] = {
+      name: selectedTeam.name,
+      logo: selectedTeam.logo
+    };
+
     clearWinner("sf2");
-    state.grandFinal[0].teams[1] = { name: "TBD", odds: null, isTBD: true };
+    state.grandFinal[0].teams[1] = createTBDTeam();
     clearWinner("gf1");
     state.champion = "TBD";
   }
@@ -157,13 +165,19 @@ function handleSemiFinalPick(matchId, teamIndex) {
   setWinner(matchId, selectedTeam);
 
   if (matchId === "sf1") {
-    state.grandFinal[0].teams[0] = { ...selectedTeam, odds: null };
+    state.grandFinal[0].teams[0] = {
+      name: selectedTeam.name,
+      logo: selectedTeam.logo
+    };
     clearWinner("gf1");
     state.champion = "TBD";
   }
 
   if (matchId === "sf2") {
-    state.grandFinal[0].teams[1] = { ...selectedTeam, odds: null };
+    state.grandFinal[0].teams[1] = {
+      name: selectedTeam.name,
+      logo: selectedTeam.logo
+    };
     clearWinner("gf1");
     state.champion = "TBD";
   }
@@ -181,6 +195,63 @@ function handleGrandFinalPick(teamIndex) {
   renderAll();
 }
 
+function createTeamRow(team, index, match, roundType) {
+  const row = document.createElement("div");
+  row.className = "team-row";
+
+  const selectedWinner = getWinner(match.id);
+  if (selectedWinner && selectedWinner.name === team.name && !team.isTBD) {
+    row.classList.add("selected");
+  }
+
+  if (!isSelectable(team)) {
+    row.classList.add("disabled");
+  }
+
+  if (roundType === "quarter") {
+    row.addEventListener("click", () => handleQuarterFinalPick(match.id, index));
+  } else if (roundType === "semi") {
+    row.addEventListener("click", () => handleSemiFinalPick(match.id, index));
+  } else if (roundType === "grand") {
+    row.addEventListener("click", () => handleGrandFinalPick(index));
+  }
+
+  const teamMain = document.createElement("div");
+  teamMain.className = "team-main";
+
+  if (team.logo) {
+    const logo = document.createElement("img");
+    logo.className = "team-logo";
+    logo.src = team.logo;
+    logo.alt = `${team.name} logo`;
+    teamMain.appendChild(logo);
+  }
+
+  const teamName = document.createElement("div");
+  teamName.className = "team-name";
+  if (team.isTBD) {
+    teamName.classList.add("tbd");
+  }
+  teamName.textContent = team.name;
+
+  teamMain.appendChild(teamName);
+
+  const odds = document.createElement("div");
+  odds.className = "odds";
+
+  if (roundType === "quarter" && team.odds) {
+    odds.textContent = team.odds;
+  } else {
+    odds.classList.add("no-odds");
+    odds.textContent = "-";
+  }
+
+  row.appendChild(teamMain);
+  row.appendChild(odds);
+
+  return row;
+}
+
 function createMatchCard(match, roundType) {
   const card = document.createElement("div");
   card.className = "match-card";
@@ -195,48 +266,8 @@ function createMatchCard(match, roundType) {
   const teams = document.createElement("div");
   teams.className = "match-teams";
 
-  const selectedWinner = getWinner(match.id);
-
   match.teams.forEach((team, index) => {
-    const row = document.createElement("div");
-    row.className = "team-row";
-
-    if (selectedWinner && selectedWinner.name === team.name && !team.isTBD) {
-      row.classList.add("selected");
-    }
-
-    if (!isSelectable(team)) {
-      row.classList.add("disabled");
-    }
-
-    if (roundType === "quarter") {
-      row.addEventListener("click", () => handleQuarterFinalPick(match.id, index));
-    } else if (roundType === "semi") {
-      row.addEventListener("click", () => handleSemiFinalPick(match.id, index));
-    } else if (roundType === "grand") {
-      row.addEventListener("click", () => handleGrandFinalPick(index));
-    }
-
-    const teamName = document.createElement("div");
-    teamName.className = "team-name";
-    if (team.isTBD) {
-      teamName.classList.add("tbd");
-    }
-    teamName.textContent = team.name;
-
-    const odds = document.createElement("div");
-    odds.className = "odds";
-
-    if (roundType === "quarter" && team.odds) {
-      odds.textContent = team.odds;
-    } else {
-      odds.classList.add("no-odds");
-      odds.textContent = "-";
-    }
-
-    row.appendChild(teamName);
-    row.appendChild(odds);
-    teams.appendChild(row);
+    teams.appendChild(createTeamRow(team, index, match, roundType));
   });
 
   card.appendChild(header);
