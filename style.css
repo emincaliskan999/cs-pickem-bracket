@@ -12,7 +12,6 @@
   --muted: #b7c1ce;
   --accent: #87b8ff;
   --winner: #41556d;
-  --book-blue: #0f4c9a;
 }
 
 html,
@@ -72,19 +71,6 @@ body {
   margin: 0;
   color: var(--muted);
   font-size: 15px;
-}
-
-.main-branding {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  min-width: 180px;
-}
-
-.main-1xbet-logo {
-  width: 180px;
-  height: auto;
-  object-fit: contain;
 }
 
 .reset-btn {
@@ -216,7 +202,7 @@ body {
 }
 
 .odds {
-  min-width: 112px;
+  min-width: 82px;
   height: 44px;
   padding: 0 12px;
   border-radius: 12px;
@@ -225,18 +211,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.odds-book {
-  color: var(--book-blue);
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  flex-shrink: 0;
 }
 
 .odds-value {
@@ -272,15 +246,19 @@ body {
   font-weight: 800;
 }
 
-@media (max-width: 1200px) {
-  .brand-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.bottom-branding {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 36px;
+  padding: 12px 0 4px;
+}
 
-  .main-branding {
-    justify-content: flex-start;
-  }
+.bottom-1xbet-logo {
+  width: 260px;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 @media (max-width: 1100px) {
@@ -308,10 +286,6 @@ body {
     font-size: 28px;
   }
 
-  .main-1xbet-logo {
-    width: 140px;
-  }
-
   .team-row {
     padding: 10px;
   }
@@ -321,14 +295,9 @@ body {
   }
 
   .odds {
-    min-width: 100px;
+    min-width: 74px;
     height: 40px;
     padding: 0 10px;
-    gap: 8px;
-  }
-
-  .odds-book {
-    font-size: 14px;
   }
 
   .odds-value {
@@ -337,5 +306,9 @@ body {
 
   .champion-name {
     font-size: 24px;
+  }
+
+  .bottom-1xbet-logo {
+    width: 180px;
   }
 }
