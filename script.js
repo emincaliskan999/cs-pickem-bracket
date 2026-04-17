@@ -1,4 +1,4 @@
-const BOOKMAKER_LOGO = "logos/1xbet.png";
+const BOOKMAKER_LOGO = "logos/1x.png";
 
 const initialData = {
   quarterFinals: [
@@ -205,7 +205,7 @@ function createOddsPill(oddsValue, roundType) {
     const logo = document.createElement("img");
     logo.className = "odds-logo";
     logo.src = BOOKMAKER_LOGO;
-    logo.alt = "1xBet";
+    logo.alt = "1X";
 
     const value = document.createElement("span");
     value.textContent = oddsValue;
